@@ -1,0 +1,22 @@
+.message {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.message:hover {
+	background: lightgrey;
+}
+
+.name {
+	font-weight: bold;
+	padding: 5px;
+}
+
+.message_text {
+	padding: 5px;
+}
+

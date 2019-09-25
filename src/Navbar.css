@@ -1,0 +1,26 @@
+.navbar {
+	background: lightgrey;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+
+.navbar_item {
+	padding: 10px;
+	cursor: pointer;
+}
+
+.navbar_item:hover {
+	background: grey;
+	color: white;
+}
+
+.selected {
+	background: grey;
+	color: white;
+}
+
+.unselected {
+	background: lightgrey;
+	color: black;
+}
