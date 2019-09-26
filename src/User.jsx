@@ -22,7 +22,7 @@ class User extends Component {
 
   render() {
     const aliases = this.props.aliases.map((alias) => (
-              <Alias key={alias} name={alias} timestamp="1569274000" />
+              <Alias key={alias[0]} name={alias[0]} timestamp={alias[1]} />
             ))
 
     return (
@@ -31,9 +31,9 @@ class User extends Component {
            {this.props.nickname}
         </div>
         {this.state.expanded ? (
-              <div className="alias_list"> 
+              <div className="alias_list">
                   Aliases: <br/>
-                  {aliases} 
+                  {aliases}
               </div>) : null }
       </div>
     );

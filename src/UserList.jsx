@@ -6,8 +6,17 @@ class UserList extends Component {
   constructor(props) {
   	super(props)
   	this.state = {
-  	    users: get_remote_users()
+  	    users: ""
     }
+
+   get_data('/api/users').then(data => {
+          console.log(data)
+          this.setState({"users": data.data})
+      }).catch(error => {
+          return false
+      })
+
+
   }
 
   render() {
@@ -15,8 +24,8 @@ class UserList extends Component {
     if (this.state.users.length > 0) {
       user_list = this.state.users.map((user) => {
         console.log(user)
-        return (<User key={user.user_id} 
-                      nickname={user.current_nickname} 
+        return (<User key={user.user_id}
+                      nickname={user.current_nickname}
                       aliases={user.aliases} /> )
       })
     }
@@ -30,24 +39,20 @@ class UserList extends Component {
   }
 }
 
-function get_remote_users() {
-  return [
-    {
-      user_id: 1,
-      current_nickname: "jim",
-      aliases: [ "Jimbo", "Jameson", "Jolly Jimothy"]
-    },
-    {
-      user_id: 2,
-      current_nickname: "frank",
-      aliases: ["Phrank", "Franklin", "Frankfurter"]
-    },
-    {
-      user_id: 3,
-      current_nickname: "norbert",
-      aliases: ["N", "Borbert"]
-    }
-  ]
-}
-
 export default UserList;
+
+function get_data(url) {
+    console.log("getting data from '" + url + "'")
+    return fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => {
+        if (response.status !== 200) {
+            throw new Error(response.status)
+        }
+        return response.json()
+    });
+}
