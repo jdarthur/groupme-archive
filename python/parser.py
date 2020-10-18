@@ -14,6 +14,12 @@ def get_all_messages(filename=FILENAME):
     first.reverse()
     return first
 
+def get_message_count():
+    with open(FILENAME) as m:
+        data = m.read()
+        parsed = json.loads(data)
+        return len(parsed)
+
 def get_messages(start_index=0, count=100):
     mesg = get_all_messages()
     return mesg[int(start_index) : int(start_index) + int(count)]

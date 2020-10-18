@@ -1,1 +1,4 @@
 node_modules/
+python/__pycache__/
+python/message.json
+python/parsed_users.py

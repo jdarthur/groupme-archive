@@ -15,13 +15,14 @@ from pprint import pformat
 from flask import Flask, jsonify, request
 app = Flask(__name__)
 
-
 from parsed_users import parsed_user_list
-from parser import get_messages
+from parser import get_messages, get_message_count
+
 
 @app.route('/api/users', methods=['GET'])
 def get_all_users():
     return jsonify({"data": parsed_user_list})
+
 
 @app.route('/api/messages', methods=['GET'])
 def get_message_set():
@@ -32,6 +33,11 @@ def get_message_set():
     print(len(messages))
     return jsonify({"data": messages})
 
+
+@app.route('/api/messages/count', methods=['GET'])
+def message_count():
+    count = get_message_count()
+    return jsonify({"count": count})
 
 
 if __name__ == "__main__":
